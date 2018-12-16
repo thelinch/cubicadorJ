@@ -1,3 +1,97 @@
-<p>
-  proveedor works!
-</p>
+<div class="row center-xs margin_top_5">
+  <div class="col-md-4 col-xs-12">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Buscar Proveedor">
+    </mat-form-field>
+    <button matTooltip="Buscar" mat-raised-button color="primary">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <div class="col-md-4 col-xs-12">
+    <button matTooltip="Nuevo Proveedor" (click)="toggleModal(modalProveedor,'abrir')" mat-raised-button color="primary">
+      <mat-icon class="icon_large">add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="row around-xs">
+  <div class="col-xs-12 col-md-4 margin_top_5" *ngFor="let proveedor of listProveedor | async" [ngClass]="{'seleccion': proveedor==proveedorSeleccionado}">
+    <div class="card hoverable">
+      <header class="card-header fondo_primario">
+        <p class="card-header-title has-text-white">
+          {{proveedor.nombre}} {{proveedor.apellidoPaterno}} {{proveedor.apellidoMaterno}}
+        </p>
+        <div class="absolute right_5 top_5" matTooltip="activo">
+          <i class="material-icons icon_large has-text-success">{{proveedor.estado? 'check_circle':''}}</i>
+        </div>
+      </header>
+      <div class="card-content">
+        <ul>
+          <li> <strong>Direccion:</strong> {{proveedor.direccion}}</li>
+          <li> <strong>Telefono:</strong> {{proveedor.numeroTelefonico}}</li>
+        </ul>
+      </div>
+      <footer class="card-footer">
+        <a routerLink='{{proveedor.id}}/cubicaciones' routerLinkActive="router-link-active" class="card-footer-item has-text-success"
+          matTooltip="cubicaciones">
+          <mat-icon class="icon_large">drag_handle</mat-icon>
+        </a>
+        <a matTooltip="editar" class="card-footer-item has-text-link" (click)="seleccionarProveedor(proveedor)">
+          <mat-icon class="icon_large">create</mat-icon>
+        </a>
+        <a matTooltip="eliminar" class="card-footer-item has-text-danger">
+          <mat-icon class="icon_large">delete_forever</mat-icon>
+        </a>
+      </footer>
+    </div>
+  </div>
+</div>
+<!--Modal para la creacion de un nuevo Proveedor-->
+<div class="modal" #modalProveedor>
+  <div class="modal-background" (click)="toggleModal(modalProveedor,'cerrar')"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Nuevo Proveedor</p>
+      <button class="delete" aria-label="close" (click)="toggleModal(modalProveedor,'cerrar')"></button>
+    </header>
+    <form [formGroup]="formularioProveedor" (ngSubmit)="saveProveedor(formularioProveedor.value)">
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Nombre</label>
+          <div class="control">
+            <input type="text" formControlName="nombre" class="input" placeholder="Nombre">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Apellido Paterno</label>
+          <div class="control">
+            <input type="text" class="input" formControlName="apellidoPaterno" placeholder="Apellido Pa">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Apellido Materno</label>
+          <div class="control">
+            <input type="text" class="input" formControlName="apellidoMaterno" placeholder="Apellido Ma">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Direccion</label>
+          <div class="control">
+            <input type="text" class="input" placeholder="Direccion" formControlName="direccion">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Telefono</label>
+          <div class="control">
+            <input type="text" class="input" placeholder="Telefono" formControlName="numeroTelefonico">
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" [disabled]="!formularioProveedor.valid" (click)="toggleModal(modalProveedor,'cerrar')">Agregar</button>
+        <button class="button" (click)="toggleModal(modalProveedor,'cerrar')">Cancel</button>
+      </footer>
+    </form>
+
+  </div>
+</div>
+<!--Fin de Modal para la creacion de un nuevo Proveedor-->

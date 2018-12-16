@@ -5,6 +5,10 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { PersonaModule } from './persona/persona.module';
 import { AppRoutingModule } from './app.routing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,7 +17,9 @@ import { AppRoutingModule } from './app.routing';
     BrowserModule,
     PersonaModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],

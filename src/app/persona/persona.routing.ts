@@ -8,7 +8,8 @@ const routes: Routes = [
 
     {
         path: 'persona/:id', component: PersonaComponent, children: [
-            { path: "proveedor", component: ProveedorComponent, children: [{ path: "cubicacion", component: ListaCubicacionComponent }] },]
+            { path: "proveedor", component: ProveedorComponent },
+            { path: "proveedor/:idProveedor/cubicaciones", component: ListaCubicacionComponent }]
     },
 ];
 

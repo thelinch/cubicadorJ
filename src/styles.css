@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.margin_top_5{
+    margin-top: 5%;
+}
+.relative{
+    position: relative;
+}
+.right_5{
+    right: 0.5%;
+}
+.absolute{
+    position: absolute;
+}
+.top_5{
+    top:5%;
+}
+.row{
+    margin-right: 0 !important; 
+}
+.seleccion{
+    box-shadow: 0px 0px 5px 5px #c2185b 
+
+}
+.icon_large{
+    font-size: 2rem
+}
+.fondo_primario{
+    background: #c2185b;
+}
